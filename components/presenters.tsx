@@ -1,0 +1,96 @@
+"use client"
+
+interface Presenter {
+  id: number
+  name: string
+  role: string
+  description: string
+  image: string
+}
+
+const presenters: Presenter[] = [
+  {
+    id: 2,
+    name: "Sofia García",
+    role: "Creadora de contenido",
+    description:
+      "Experta en narrativa digital y conexión emocional con audiencias. Con más de 500k seguidores, comparte historias que tocan el alma.",
+    image: "/eddie.png",
+  },
+  {
+    id: 1,
+    name: "Marco López",
+    role: "Emprendedor & Coach",
+    description:
+      "Fundador de 3 startups exitosas. Especialista en liderazgo inspirador y transformación personal mediante la vulnerabilidad.",
+    image: "/jael.png",
+  },
+  {
+    id: 4,
+    name: "David Chen",
+    role: "Innovador & Artista",
+    description:
+    "Creador multimedia que fusiona tecnología con humanidad. Sus instalaciones han tocado a más de 1 millón de personas en vivo.",
+    image: "/apostol.png",
+  },
+  {
+    id: 3,
+    name: "Julieta Rossi",
+    role: "Psicóloga & Escritora",
+    description:
+      "Autora bestseller sobre inteligencia emocional. Facilitadora de espacios seguros para el crecimiento personal y espiritual.",
+    image: "/p sergio.png",
+  },
+  {
+    id: 5,
+    name: "Luisa Martínez",
+    role: "Innovadora Tecnológica",
+    description:
+      "Fundadora de una startup revolucionaria en tecnología. Su trabajo ha impactado positivamente en la sociedad.",
+    image: "/bunster.png",
+  },
+]
+
+export default function Presenters() {
+  return (
+    <section className="w-full bg-black px-4 py-16 sm:py-20 md:py-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Title */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
+          Nuestros Presentadores
+        </h2>
+        <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
+          Conoce a los creadores y pensadores que harán este evento especial
+        </p>
+
+        {/* Presenters Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+          {presenters.map((presenter) => (
+            <div
+              key={presenter.id}
+              className="flex flex-col items-center text-center transform hover:scale-105 transition-transform duration-300"
+            >
+              {/* Image */}
+              <div className="w-full aspect-square mb-4 overflow-hidden rounded-lg">
+                <img
+                  src={presenter.image || "/placeholder.svg"}
+                  alt={presenter.name}
+                  className="w-full h-full object-cover hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+
+              {/* Name */}
+              <h3 className="text-lg sm:text-xl font-semibold mb-1">{presenter.name}</h3>
+
+              {/* Role */}
+              <p className="text-rose-500 text-sm font-medium mb-3">{presenter.role}</p>
+
+              {/* Description */}
+              <p className="text-gray-400 text-sm leading-relaxed">{presenter.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
