@@ -1,24 +1,44 @@
 "use client"
 
+import Image from "next/image"
+import { Poppins } from "next/font/google"
+
+const poppins = Poppins({ subsets: ["latin"], weight: "600" })
+
 export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
       {/* Heart SVG */}
       <div className="mb-12 flex items-center justify-center">
-        <svg viewBox="0 0 100 100" width="120" height="120" className="text-rose-500 animate-pulse" fill="currentColor">
-          <path d="M50,85 Q15,70 15,50 Q15,35 30,35 Q40,35 50,45 Q60,35 70,35 Q85,35 85,50 Q85,70 50,85 Z" />
-        </svg>
+        <Image src={"/de corazoDn a corazon 2026-03.png"} width={420} height={420} alt="De corazón a corazón"/>
       </div>
 
-      {/* Title */}
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light text-center mb-8 text-balance leading-tight max-w-4xl">
-        De corazón a corazón
-      </h1>
-
       {/* Description */}
-      <p className="text-base sm:text-lg text-gray-300 text-center max-w-2xl mb-12">
-        Un evento especial donde creadores y pensadores se reúnen para conectar auténticamente
+      <p className={`text-base sm:text-lg text-gray-300 text-center max-w-2xl mb-4 uppercase font-semibold ${poppins.className}`}>
+        Conferencia anual Cristo la solucion San Justo
       </p>
+
+      {/* Red underline and subtitle block (closer to PNG layout) */}
+      <div className="w-full max-w-5xl border-b-4 border-red-600 mb-3"></div>
+      <div className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify- gap-4 text-white mb-12">
+        {/* Left: Palabra y Poder decorative */}
+        <p
+          className="text-3xl sm:text-5xl leading-none"
+          style={{ fontFamily: '"AwesomeLathusca-Regular", Poppins, sans-serif' }}
+        >
+          PALABRA y PODER
+        </p>
+
+        {/* Right: Date and venue */}
+        <div className="text-right">
+          <p className="uppercase tracking-widest text-base sm:text-xl text-gray-200">
+            16 Y 17 DE FEBRERO 16HS
+          </p>
+          <p className="uppercase tracking-wide text-xs sm:text-sm text-gray-300">
+            AUDITORIO CRISTO LA SOLUCIÓN SAN JUSTO
+          </p>
+        </div>
+      </div>
 
       {/* CTA Button */}
       <button
