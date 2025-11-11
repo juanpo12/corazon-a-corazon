@@ -20,7 +20,7 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
 
       {/* Red underline and subtitle block (closer to PNG layout) */}
       <div className="w-full max-w-5xl border-b-4 border-red-600 mb-3"></div>
-      <div className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify- gap-4 text-white mb-12">
+      <div className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4 text-white mb-12">
         {/* Left: Palabra y Poder decorative */}
         <p
           className="text-3xl sm:text-5xl leading-none"
