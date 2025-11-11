@@ -124,3 +124,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .font-awesome-lathusca {
+    font-family: var(--font-awesome-lathusca), Poppins, sans-serif !important;
+  }
+}

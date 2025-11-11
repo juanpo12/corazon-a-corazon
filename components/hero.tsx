@@ -19,24 +19,17 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
       </p>
 
       {/* Red underline and subtitle block (closer to PNG layout) */}
-      <div className="w-full max-w-5xl border-b-4 border-red-600 mb-3"></div>
-      <div className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4 text-white mb-12">
+      <div className="w-full max-w-7xl border-b-4 border-red-600 mb-3"></div>
+      <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4 text-white mb-12">
         {/* Left: Palabra y Poder decorative */}
-        <p
-          className="text-3xl sm:text-5xl leading-none"
-          style={{ fontFamily: '"AwesomeLathusca-Regular", Poppins, sans-serif' }}
-        >
-          PALABRA y PODER
-        </p>
-
-        {/* Right: Date and venue */}
-        <div className="text-right">
-          <p className="uppercase tracking-widest text-base sm:text-xl text-gray-200">
-            16 Y 17 DE FEBRERO 16HS
-          </p>
-          <p className="uppercase tracking-wide text-xs sm:text-sm text-gray-300">
-            AUDITORIO CRISTO LA SOLUCIÓN SAN JUSTO
-          </p>
+        <div className="w-[95vw] sm:w-[1200px] lg:w-[1400px]">
+          <Image
+            src="/palabraypoder.png"
+            alt="Palabra y Poder"
+            width={650}
+            height={200}
+            priority
+          />
         </div>
       </div>
 
