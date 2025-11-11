@@ -22,7 +22,7 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
       <div className="w-full max-w-7xl border-b-4 border-red-600 mb-3"></div>
       <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-center gap-4 text-white mb-12">
         {/* Left: Palabra y Poder decorative */}
-        <div className="w-[95vw] sm:w-[1200px] lg:w-[1400px]">
+        <div className="">
           <Image
             src="/palabraypoder.png"
             alt="Palabra y Poder"
