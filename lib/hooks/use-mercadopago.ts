@@ -21,9 +21,6 @@ export function useMercadoPago() {
         body: JSON.stringify({
           quantity: input.quantity,
           payer: input.email || input.name ? { name: input.name, email: input.email } : undefined,
-          title: "Entrada de evento",
-          price: 49,
-          currency: "USD",
         }),
       })
       if (!res.ok) {
