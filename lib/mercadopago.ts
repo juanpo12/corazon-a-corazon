@@ -28,7 +28,7 @@ export async function createTicketPreference(params: {
   const {
     quantity,
     price,
-    currency = "USD",
+    currency = "ARS",
     title = "Entrada de evento",
     payer,
     externalReference,
