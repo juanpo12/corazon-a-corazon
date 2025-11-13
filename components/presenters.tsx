@@ -46,7 +46,7 @@ const presenters: Presenter[] = [
 
 export default function Presenters() {
   return (
-    <section className="w-full bg-black px-4 py-16 sm:py-20 md:py-24">
+    <section className="w-full bg-black bg-veins px-4 py-16 sm:py-20 md:py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">

@@ -125,6 +125,18 @@
   }
 }
 
+/* Clase utilitaria para patrón de líneas rojas sutiles */
+.bg-veins {
+  background-image:
+    radial-gradient(800px 800px at 80% 10%, rgba(142, 27, 47, 0.08), transparent 60%),
+    radial-gradient(1000px 1000px at 20% 90%, rgba(142, 27, 47, 0.06), transparent 65%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' preserveAspectRatio='none'><g stroke='%238e1b2f' stroke-opacity='0.12' stroke-width='2' fill='none'><path d='M-50 120 C 200 60 650 160 1100 90'/><path d='M0 220 C 300 120 600 320 900 170'/><path d='M-100 420 C 200 320 500 520 800 370'/><path d='M50 650 C 350 550 650 700 950 580'/><path d='M-80 300 C 150 220 500 340 900 260'/></g></svg>");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: auto, auto, cover;
+  background-attachment: fixed, fixed, fixed;
+  background-position: center, center, center;
+}
+
 @layer utilities {
   .font-awesome-lathusca {
     font-family: var(--font-awesome-lathusca), Poppins, sans-serif !important;
