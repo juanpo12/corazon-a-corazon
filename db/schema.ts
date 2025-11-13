@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, integer, timestamp, text, boolean, numeric } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, integer, timestamp, text, boolean, numeric, uniqueIndex } from "drizzle-orm/pg-core";
 
 export const events = pgTable("events", {
   id: serial("id").primaryKey(),
@@ -19,9 +19,14 @@ export const tickets = pgTable("tickets", {
     .notNull(),
   buyerName: varchar("buyer_name", { length: 255 }).notNull(),
   buyerEmail: varchar("buyer_email", { length: 255 }).notNull(),
+  quantity: integer("quantity").notNull().default(1),
   amountPaid: numeric("amount_paid", { precision: 10, scale: 2 }).notNull(),
   paymentStatus: varchar("payment_status", { length: 50 }).default("pending"), // pending, paid, failed
   paymentId: varchar("payment_id", { length: 255 }), // ID de MercadoPago u otro gateway
   createdAt: timestamp("created_at").defaultNow(),
+}, (table) => {
+  return {
+    paymentIdUnique: uniqueIndex("tickets_payment_id_unique").on(table.paymentId!),
+  }
 });
 

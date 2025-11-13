@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useMercadoPago } from "@/lib/hooks/use-mercadopago"
 import { X } from "lucide-react"
 
 interface TicketModalProps {
@@ -14,6 +15,7 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
     quantity: "1",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const { createTicketPayment, loading } = useMercadoPago()
 
   if (!isOpen) return null
 
@@ -25,14 +27,21 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitted(true)
-    setTimeout(() => {
-      onClose()
+    try {
+      await createTicketPayment({
+        quantity: Number(formData.quantity),
+        name: formData.name,
+        email: formData.email,
+      })
+      // Si estamos en servidor sandbox/producción, se redirige automáticamente
+    } catch (err) {
+      console.error(err)
       setIsSubmitted(false)
-      setFormData({ name: "", email: "", quantity: "1" })
-    }, 2000)
+      alert("No se pudo iniciar el pago con Mercado Pago. Intenta nuevamente.")
+    }
   }
 
   return (
@@ -134,9 +143,10 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full px-4 py-3 bg-rose-500 hover:bg-rose-600 text-white font-semibold rounded-lg transition-colors duration-300 mt-6"
+                    disabled={loading}
+                    className="w-full px-4 py-3 bg-rose-500 hover:bg-rose-600 disabled:opacity-60 text-white font-semibold rounded-lg transition-colors duration-300 mt-6"
                   >
-                    Comprar Entrada
+                    {loading ? "Conectando con Mercado Pago..." : "Pagar con Mercado Pago"}
                   </button>
                 </form>
 
