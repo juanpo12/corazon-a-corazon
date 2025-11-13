@@ -1,9 +1,7 @@
 "use client"
-
 interface Presenter {
   id: number
   name: string
-  role: string
   description: string
   image: string
 }
@@ -12,7 +10,6 @@ const presenters: Presenter[] = [
   {
     id: 2,
     name: "Sofia García",
-    role: "Creadora de contenido",
     description:
       "Experta en narrativa digital y conexión emocional con audiencias. Con más de 500k seguidores, comparte historias que tocan el alma.",
     image: "/eddie.png",
@@ -20,7 +17,6 @@ const presenters: Presenter[] = [
   {
     id: 1,
     name: "Marco López",
-    role: "Emprendedor & Coach",
     description:
       "Fundador de 3 startups exitosas. Especialista en liderazgo inspirador y transformación personal mediante la vulnerabilidad.",
     image: "/jael.png",
@@ -28,7 +24,6 @@ const presenters: Presenter[] = [
   {
     id: 4,
     name: "David Chen",
-    role: "Innovador & Artista",
     description:
     "Creador multimedia que fusiona tecnología con humanidad. Sus instalaciones han tocado a más de 1 millón de personas en vivo.",
     image: "/apostol.png",
@@ -36,7 +31,6 @@ const presenters: Presenter[] = [
   {
     id: 3,
     name: "Julieta Rossi",
-    role: "Psicóloga & Escritora",
     description:
       "Autora bestseller sobre inteligencia emocional. Facilitadora de espacios seguros para el crecimiento personal y espiritual.",
     image: "/p sergio.png",
@@ -44,7 +38,6 @@ const presenters: Presenter[] = [
   {
     id: 5,
     name: "Luisa Martínez",
-    role: "Innovadora Tecnológica",
     description:
       "Fundadora de una startup revolucionaria en tecnología. Su trabajo ha impactado positivamente en la sociedad.",
     image: "/bunster.png",
@@ -81,9 +74,6 @@ export default function Presenters() {
 
               {/* Name */}
               <h3 className="text-lg sm:text-xl font-semibold mb-1">{presenter.name}</h3>
-
-              {/* Role */}
-              <p className="text-rose-500 text-sm font-medium mb-3">{presenter.role}</p>
 
               {/* Description */}
               <p className="text-gray-400 text-sm leading-relaxed">{presenter.description}</p>
