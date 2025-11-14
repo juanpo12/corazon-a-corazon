@@ -60,7 +60,21 @@ export async function createTicketPreference(params: {
     },
     notification_url: `${baseUrl}/api/mercadopago/webhook`,
     auto_return: "approved" as const,
-    external_reference: externalReference ?? crypto.randomUUID(),
+    // Embed essential buyer info into external_reference so webhook can recover it
+    // even if Mercado Pago's sandbox overrides payer data.
+    external_reference:
+      externalReference ??
+      (() => {
+        const refPayload: Record<string, unknown> = {
+          q: quantity,
+          ev: eventId,
+        }
+        if (payer?.name) refPayload.bn = payer.name
+        if (payer?.email) refPayload.be = payer.email
+        // Prefix with a marker to identify our encoding format
+        const encoded = Buffer.from(JSON.stringify(refPayload)).toString("base64")
+        return `CAC1:${encoded}`
+      })(),
     statement_descriptor: "Entradas",
   }
 

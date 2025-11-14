@@ -36,18 +36,42 @@ export async function POST(req: Request) {
       return NextResponse.json({ received: true, status })
     }
 
+    // Intentar recuperar datos del comprador desde external_reference (codificado)
+    const externalRefRaw: string | undefined = (payment as any)?.external_reference
+    let extBuyerName: string | undefined
+    let extBuyerEmail: string | undefined
+    let extQuantity: number | undefined
+    let extEventId: number | undefined
+    if (externalRefRaw && typeof externalRefRaw === "string" && externalRefRaw.startsWith("CAC1:")) {
+      const encoded = externalRefRaw.slice(5)
+      try {
+        const decoded = JSON.parse(Buffer.from(encoded, "base64").toString("utf8"))
+        if (typeof decoded?.bn === "string") extBuyerName = decoded.bn
+        if (typeof decoded?.be === "string") extBuyerEmail = decoded.be
+        if (Number.isFinite(Number(decoded?.q))) extQuantity = Number(decoded.q)
+        if (Number.isFinite(Number(decoded?.ev))) extEventId = Number(decoded.ev)
+      } catch {}
+    }
+
     const buyerNameFromMeta: string | undefined = (payment as any)?.metadata?.buyerName
     const payerEmailFromMeta: string | undefined = (payment as any)?.metadata?.buyerEmail
 
-    const buyerName: string = (buyerNameFromMeta ?? [payment?.payer?.first_name, payment?.payer?.last_name]
+    const buyerName: string = (buyerNameFromMeta ?? extBuyerName ?? [payment?.payer?.first_name, payment?.payer?.last_name]
       .filter(Boolean)
       .join(" ")) || ""
-    const payerEmail: string | undefined = payerEmailFromMeta ?? payment?.payer?.email
+    const payerEmail: string | undefined = payerEmailFromMeta ?? extBuyerEmail ?? payment?.payer?.email
 
     const amountPaid: number = Number(payment?.transaction_amount ?? 0)
     const quantityFromMeta: number = Number((payment as any)?.metadata?.quantity ?? 1)
     const quantityFromItems: number = Number(((payment as any)?.additional_info?.items?.[0]?.quantity) ?? 1)
-    const quantity: number = Number.isFinite(quantityFromMeta) ? quantityFromMeta : quantityFromItems
+    const quantityFromExternal: number = Number(extQuantity ?? NaN)
+    const quantity: number = Number.isFinite(quantityFromMeta)
+      ? quantityFromMeta
+      : Number.isFinite(quantityFromItems)
+        ? quantityFromItems
+        : Number.isFinite(quantityFromExternal)
+          ? quantityFromExternal
+          : 1
 
     // Buscamos el evento activo (puedes ajustar esta lógica según tus necesidades)
     const eventIdFromMeta = (payment as any)?.metadata?.eventId as number | undefined
@@ -61,7 +85,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "No hay evento activo" }, { status: 500 })
     }
 
-    const eventId = eventIdFromMeta ?? activeEvent[0].id
+    const eventId = (Number.isFinite(Number(eventIdFromMeta)) ? Number(eventIdFromMeta) : undefined) ?? extEventId ?? activeEvent[0].id
 
     // Evitar duplicados: si ya existe un ticket con este paymentId, no creamos otro
     const existing = await db
