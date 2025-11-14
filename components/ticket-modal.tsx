@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMercadoPago } from "@/lib/hooks/use-mercadopago"
 import { X } from "lucide-react"
+import { Spinner } from "@/components/ui/spinner"
 
 interface TicketModalProps {
   isOpen: boolean
@@ -15,7 +16,24 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
     quantity: "1",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [eventInfo, setEventInfo] = useState<{ name: string; price: number; currency: string } | null>(null)
   const { createTicketPayment, loading } = useMercadoPago()
+
+  useEffect(() => {
+    let cancelled = false
+    async function loadEvent() {
+      try {
+        const res = await fetch("/api/events/current")
+        if (!res.ok) return
+        const data = await res.json()
+        if (!cancelled) setEventInfo({ name: data.name, price: Number(data.price), currency: data.currency || "ARS" })
+      } catch {}
+    }
+    loadEvent()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   if (!isOpen) return null
 
@@ -65,17 +83,11 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
           <div className="p-6 sm:p-8">
             {isSubmitted ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="mb-4 text-rose-500">
-                  <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <div className="mb-4">
+                  <Spinner className="size-12 text-gray-300" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">¡Gracias!</h3>
-                <p className="text-gray-400">Tu entrada ha sido adquirida exitosamente.</p>
+                <h3 className="text-xl font-semibold mb-2">Conectando con Mercado Pago…</h3>
+                <p className="text-gray-400">Serás redirigido para completar tu pago.</p>
               </div>
             ) : (
               <>
@@ -132,11 +144,11 @@ export default function TicketModal({ isOpen, onClose }: TicketModalProps) {
                   <div className="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4 my-6">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-300">Precio por entrada:</span>
-                      <span className="font-semibold">$49</span>
+                      <span className="font-semibold">{eventInfo ? `$${eventInfo.price}` : "…"}</span>
                     </div>
                     <div className="border-t border-rose-500/20 mt-3 pt-3 flex justify-between items-center text-lg font-semibold">
                       <span>Total:</span>
-                      <span className="text-rose-500">${Number(formData.quantity) * 49}</span>
+                      <span className="text-rose-500">${Number(formData.quantity) * (eventInfo?.price ?? 0)}</span>
                     </div>
                   </div>
 

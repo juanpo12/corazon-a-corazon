@@ -49,6 +49,8 @@ export async function createTicketPreference(params: {
     metadata: {
       quantity,
       eventId,
+      buyerName: payer?.name,
+      buyerEmail: payer?.email,
     },
     payer,
     back_urls: {

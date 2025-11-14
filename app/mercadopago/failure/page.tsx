@@ -1,11 +1,11 @@
 export default function FailurePage({ searchParams }: { searchParams: Record<string, string> }) {
   const status = searchParams?.status
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-8">
-      <div className="max-w-md w-full text-center">
-        <h1 className="text-3xl font-serif mb-4">Pago rechazado</h1>
-        <p className="text-gray-300 mb-2">Tu pago no pudo ser procesado.</p>
-        {status && <p className="text-sm text-gray-500">Estado: {status}</p>}
+    <main className="min-h-screen bg-black text-white flex items-center justify-center p-6">
+      <div className="bg-zinc-900 rounded-xl max-w-md w-full border border-rose-500/20 p-6 sm:p-8 text-center">
+        <h1 className="text-3xl font-serif mb-3">Pago rechazado</h1>
+        <p className="text-gray-300 mb-4">Tu pago no pudo ser procesado. Intenta nuevamente.</p>
+        {status && <p className="text-xs text-gray-500">Estado: {status}</p>}
       </div>
     </main>
   )

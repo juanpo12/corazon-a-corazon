@@ -36,10 +36,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ received: true, status })
     }
 
-    const payerEmail: string | undefined = payment?.payer?.email
-    const buyerName: string = [payment?.payer?.first_name, payment?.payer?.last_name]
+    const buyerNameFromMeta: string | undefined = (payment as any)?.metadata?.buyerName
+    const payerEmailFromMeta: string | undefined = (payment as any)?.metadata?.buyerEmail
+
+    const buyerName: string = (buyerNameFromMeta ?? [payment?.payer?.first_name, payment?.payer?.last_name]
       .filter(Boolean)
-      .join(" ") || ""
+      .join(" ")) || ""
+    const payerEmail: string | undefined = payerEmailFromMeta ?? payment?.payer?.email
 
     const amountPaid: number = Number(payment?.transaction_amount ?? 0)
     const quantityFromMeta: number = Number((payment as any)?.metadata?.quantity ?? 1)
