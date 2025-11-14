@@ -16,9 +16,9 @@ const presenters: Presenter[] = [
   },
   {
     id: 1,
-    name: "Marco López",
+    name: "Jael Ojuel",
     description:
-      "Fundador de 3 startups exitosas. Especialista en liderazgo inspirador y transformación personal mediante la vulnerabilidad.",
+      "Pastora en el ministerio Centro Cristiano amor y vida.",
     image: "/jael.png",
   },
   {
