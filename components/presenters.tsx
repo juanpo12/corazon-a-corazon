@@ -9,9 +9,9 @@ interface Presenter {
 const presenters: Presenter[] = [
   {
     id: 2,
-    name: "Felipe Bunster",
+    name: "Eddie Nunes",
     description:
-      "Pastor de la iglesia centro cristiano internacional, en Santiago de Chile",
+      "Pastor de la iglesia Zion, en Lisboa, Portugal.",
     image: "/eddie.png",
   },
   {
@@ -37,8 +37,8 @@ const presenters: Presenter[] = [
   },
   {
     id: 5,
-    name: "Eddie Nunes",
-    description: "Pastor de la iglesia Zion, en Lisboa, Portugal.",
+    name: "Felipe Bunster",
+    description: "Pastor de la iglesia centro cristiano internacional, en Santiago de Chile.",
     image: "/bunster.png",
   },
 ];
@@ -49,7 +49,7 @@ export default function Presenters() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
-          Nuestros Presentadores
+          Nuestros oradores
         </h2>
         <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
           Conoce a los creadores y pensadores que harán este evento especial
