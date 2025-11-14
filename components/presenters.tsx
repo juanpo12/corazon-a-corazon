@@ -1,17 +1,17 @@
-"use client"
+"use client";
 interface Presenter {
-  id: number
-  name: string
-  description: string
-  image: string
+  id: number;
+  name: string;
+  description: string;
+  image: string;
 }
 
 const presenters: Presenter[] = [
   {
     id: 2,
-    name: "Sofia García",
+    name: "Felipe Bunster",
     description:
-      "Experta en narrativa digital y conexión emocional con audiencias. Con más de 500k seguidores, comparte historias que tocan el alma.",
+      "Pastor de la iglesia centro cristiano internacional, en Santiago de Chile",
     image: "/eddie.png",
   },
   {
@@ -23,26 +23,25 @@ const presenters: Presenter[] = [
   },
   {
     id: 4,
-    name: "David Chen",
+    name: "Juan crudo",
     description:
-    "Creador multimedia que fusiona tecnología con humanidad. Sus instalaciones han tocado a más de 1 millón de personas en vivo.",
+      "Apóstol de nuestro ministerio y pastor de la iglesia Cristo la solución, en Flores, Argentina.",
     image: "/apostol.png",
   },
   {
     id: 3,
-    name: "Julieta Rossi",
+    name: "Sergio Belart",
     description:
-      "Autora bestseller sobre inteligencia emocional. Facilitadora de espacios seguros para el crecimiento personal y espiritual.",
+      "Pastor de la iglesia Cita con la vida, en la ciudad de Córdoba, Argentina. ",
     image: "/p sergio.png",
   },
   {
     id: 5,
-    name: "Luisa Martínez",
-    description:
-      "Fundadora de una startup revolucionaria en tecnología. Su trabajo ha impactado positivamente en la sociedad.",
+    name: "Eddie Nunes",
+    description: "Pastor de la iglesia Zion, en Lisboa, Portugal.",
     image: "/bunster.png",
   },
-]
+];
 
 export default function Presenters() {
   return (
@@ -73,14 +72,18 @@ export default function Presenters() {
               </div>
 
               {/* Name */}
-              <h3 className="text-lg sm:text-xl font-semibold mb-1">{presenter.name}</h3>
+              <h3 className="text-lg sm:text-xl font-semibold mb-1">
+                {presenter.name}
+              </h3>
 
               {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed">{presenter.description}</p>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {presenter.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
