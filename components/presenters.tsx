@@ -49,7 +49,7 @@ export default function Presenters() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-semibold text-center mb-4 text-rose-500">
-          Nuestros oradores
+          Oradores
         </h2>
         <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
           Conoce a los creadores y pensadores que harán este evento especial

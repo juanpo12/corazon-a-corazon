@@ -56,7 +56,7 @@ export default function Home() {
                 ¿A qué hora?
               </h3>
               <p className="text-gray-300">
-                Ambos dias a las 18:00.
+                Ambos dias a las 16:00.
               </p>
             </div>
 
