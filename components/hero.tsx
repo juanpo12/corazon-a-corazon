@@ -14,7 +14,7 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
 
       {/* Description */}
       <p className={`text-base sm:text-lg text-gray-300 text-center max-w-2xl mb-4 uppercase font-semibold ${poppins.className}`}>
-        Conferencia anual Cristo la solucion San Justo
+        Conferencia anual Cristo La Solución San Justo
       </p>
 
       {/* Red underline and subtitle block (closer to PNG layout) */}

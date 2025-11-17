@@ -18,27 +18,27 @@ const presenters: Presenter[] = [
     id: 1,
     name: "Jael Ojuel",
     description:
-      "Pastora en el ministerio Centro Cristiano amor y vida.",
+      "Pastora en el ministerio Centro Cristiano Amor y Vida.",
     image: "/jael.png",
   },
   {
     id: 4,
     name: "Juan crudo",
     description:
-      "Apóstol de nuestro ministerio y pastor de la iglesia Cristo la solución, en Flores, Argentina.",
+      "Apóstol de nuestro ministerio y pastor de la Iglesia Cristo La Solución, en Flores, Argentina.",
     image: "/apostol.png",
   },
   {
     id: 3,
     name: "Sergio Belart",
     description:
-      "Pastor de la iglesia Cita con la vida, en la ciudad de Córdoba, Argentina. ",
+      "Pastor de la Iglesia Cita con la Vida, en la ciudad de Córdoba, Argentina.",
     image: "/p sergio.png",
   },
   {
     id: 5,
     name: "Felipe Bunster",
-    description: "Pastor de la iglesia centro cristiano internacional, en Santiago de Chile.",
+    description: "Pastor de la Iglesia Centro Cristiano Internacional, en Santiago de Chile.",
     image: "/bunster.png",
   },
 ];
