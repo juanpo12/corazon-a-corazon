@@ -34,9 +34,41 @@ export default function Home() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Ubicación Cristo La Solución"
             />
-          </div>
+      </div>
       </div>
       <Presenters />
+      <section className="w-full bg-black bg-veins px-4 py-16 sm:py-20 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
+            Preguntas frecuentes
+          </h2>
+          <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
+            Información clave sobre el evento
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            <div className="bg-zinc-900/40 border border-rose-500/10 rounded-lg p-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">¿Dónde?</h3>
+              <p className="text-gray-300">Av. Brig. Gral. Juan Manuel de Rosas 4357, San Justo, Buenos Aires. Iglesia Cristo La Solución.</p>
+            </div>
+
+            <div className="bg-zinc-900/40 border border-rose-500/10 rounded-lg p-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">¿Cuándo?</h3>
+              <p className="text-gray-300">Marzo 2026. La fecha exacta se confirma al acercarse el evento.</p>
+            </div>
+
+            <div className="bg-zinc-900/40 border border-rose-500/10 rounded-lg p-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">¿A qué hora?</h3>
+              <p className="text-gray-300">Puertas 18:00. Inicio 19:00. Cierre estimado 22:00.</p>
+            </div>
+
+            <div className="bg-zinc-900/40 border border-rose-500/10 rounded-lg p-6">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">¿Instalaciones?</h3>
+              <p className="text-gray-300">Auditorio climatizado, estacionamiento cercano, accesos para personas con movilidad reducida y sector de hidratación.</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <TicketModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   )
