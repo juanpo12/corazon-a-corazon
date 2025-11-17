@@ -65,8 +65,9 @@ export default function Home() {
                 ¿Instalaciones?
               </h3>
               <p className="text-gray-300">
-                Auditorio climatizado, estacionamiento cercano, accesos para
-                personas con movilidad reducida y sector de venta de comida.
+                Auditorio climatizado, a metros del centro de la ciudad de San
+                Justo, accesos para personas con movilidad reducida y sector
+                de venta de comida.
               </p>
             </div>
           </div>
