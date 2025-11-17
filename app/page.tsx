@@ -4,6 +4,7 @@ import { useState } from "react";
 import Hero from "@/components/hero";
 import Presenters from "@/components/presenters";
 import TicketModal from "@/components/ticket-modal";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function Home() {
                 ¿Cuándo?
               </h3>
               <p className="text-gray-300">
-                15 y 16 de Febrero de 2026.
+                16 y 17 de Febrero de 2026.
               </p>
             </div>
 
@@ -84,6 +85,7 @@ export default function Home() {
         </div>
       </div>
       </section>
+      <Footer />
       <TicketModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
