@@ -26,7 +26,7 @@ export default function Home() {
       <Presenters />
       <section className="w-full bg-black bg-veins px-4 py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-semibold text-center mb-4 text-rose-500">
             Preguntas frecuentes
           </h2>
           <p className="font-sans font-semibold text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
