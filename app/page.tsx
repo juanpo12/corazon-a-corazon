@@ -5,6 +5,7 @@ import Hero from "@/components/hero";
 import Presenters from "@/components/presenters";
 import TicketModal from "@/components/ticket-modal";
 import Footer from "@/components/footer";
+import LazyMap from "@/components/lazy-map";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,18 +72,11 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full px-4 sm:px-6 md:px-8 py-8 sm:py-12">
-        <div className="w-full h-96 sm:h-[500px] md:h-[600px] rounded-xl overflow-hidden shadow-2xl">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.7526004077745!2d-58.56511212445445!3d-34.68619297292483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc623af501339%3A0xc605a8a195d8ce69!2sAv.%20Brig.%20Gral.%20Juan%20Manuel%20de%20Rosas%204357%2C%20B1754FVB%20San%20Justo%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1757106329998!5m2!1ses-419!2sar"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación Cristo La Solución"
-          />
-        </div>
+        <LazyMap
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.7526004077745!2d-58.56511212445445!3d-34.68619297292483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc623af501339%3A0xc605a8a195d8ce69!2sAv.%20Brig.%20Gral.%20Juan%20Manuel%20de%20Rosas%204357%2C%20B1754FVB%20San%20Justo%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1757106329998!5m2!1ses-419!2sar"
+          title="Ubicación Cristo La Solución"
+          className="w-full h-96 sm:h-[500px] md:h-[600px] rounded-xl overflow-hidden shadow-2xl"
+        />
       </div>
       </section>
       <Footer />

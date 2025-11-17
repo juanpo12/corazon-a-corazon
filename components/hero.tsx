@@ -9,7 +9,7 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
       {/* Heart SVG */}
       <div className="mb-12 flex items-center justify-center">
-        <Image src={"/de corazoDn a corazon 2026-03.png"} width={420} height={420} alt="De corazón a corazón"/>
+        <Image src={"/de corazoDn a corazon 2026-03.png"} width={420} height={420} alt="De corazón a corazón" priority sizes="(max-width: 640px) 60vw, 420px"/>
       </div>
 
       {/* Description */}
