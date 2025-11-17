@@ -72,7 +72,7 @@ export default function Presenters() {
               </div>
 
               {/* Name */}
-              <h3 className="text-lg sm:text-xl font-semibold mb-1">
+              <h3 className="text-xl sm:text-2xl font-sans font-semibold uppercase text-center mb-1">
                 {presenter.name}
               </h3>
 

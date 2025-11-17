@@ -27,8 +27,8 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
             Preguntas frecuentes
           </h2>
-          <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
-            Información clave sobre el evento
+          <p className="font-sans font-semibold text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
+            INFORMACIÓN CLAVE SOBRE EL EVENTO
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
@@ -45,7 +45,7 @@ export default function Home() {
                 ¿Cuándo?
               </h3>
               <p className="text-gray-300">
-                Marzo 2026. La fecha exacta se confirma al acercarse el evento.
+                15 y 16 de Febrero de 2026.
               </p>
             </div>
 
@@ -54,7 +54,7 @@ export default function Home() {
                 ¿A qué hora?
               </h3>
               <p className="text-gray-300">
-                Puertas 18:00. Inicio 19:00. Cierre estimado 22:00.
+                Ambos dias a las 18:00.
               </p>
             </div>
 
@@ -64,7 +64,7 @@ export default function Home() {
               </h3>
               <p className="text-gray-300">
                 Auditorio climatizado, estacionamiento cercano, accesos para
-                personas con movilidad reducida y sector de hidratación.
+                personas con movilidad reducida y sector de venta de comida.
               </p>
             </div>
           </div>
