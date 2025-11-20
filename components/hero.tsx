@@ -9,12 +9,12 @@ export default function Hero({ onBuyClick }: { onBuyClick: () => void }) {
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
       {/* Heart SVG */}
       <div className="mb-12 flex items-center justify-center">
-        <Image src={"/de corazoDn a corazon 2026-03.png"} width={420} height={420} alt="De corazón a corazón"/>
+        <Image src={"/de corazoDn a corazon 2026-03.png"} width={420} height={420} alt="De corazón a corazón" priority sizes="(max-width: 640px) 60vw, 420px"/>
       </div>
 
       {/* Description */}
       <p className={`text-base sm:text-lg text-gray-300 text-center max-w-2xl mb-4 uppercase font-semibold ${poppins.className}`}>
-        Conferencia anual Cristo la solucion San Justo
+        Conferencia anual Cristo La Solución San Justo
       </p>
 
       {/* Red underline and subtitle block (closer to PNG layout) */}

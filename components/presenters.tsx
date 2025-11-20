@@ -18,27 +18,27 @@ const presenters: Presenter[] = [
     id: 1,
     name: "Jael Ojuel",
     description:
-      "Pastora en el ministerio Centro Cristiano amor y vida.",
+      "Pastora en el ministerio Centro Cristiano Amor y Vida.",
     image: "/jael.png",
   },
   {
     id: 4,
     name: "Juan crudo",
     description:
-      "Apóstol de nuestro ministerio y pastor de la iglesia Cristo la solución, en Flores, Argentina.",
+      "Apóstol de nuestro ministerio y pastor de la Iglesia Cristo La Solución, en Flores, Argentina.",
     image: "/apostol.png",
   },
   {
     id: 3,
     name: "Sergio Belart",
     description:
-      "Pastor de la iglesia Cita con la vida, en la ciudad de Córdoba, Argentina. ",
+      "Pastor de la Iglesia Cita con la Vida, en la ciudad de Córdoba, Argentina.",
     image: "/p sergio.png",
   },
   {
     id: 5,
     name: "Felipe Bunster",
-    description: "Pastor de la iglesia centro cristiano internacional, en Santiago de Chile.",
+    description: "Pastor de la Iglesia Centro Cristiano Internacional, en Santiago de Chile.",
     image: "/bunster.png",
   },
 ];
@@ -48,8 +48,8 @@ export default function Presenters() {
     <section className="w-full bg-black bg-veins px-4 py-16 sm:py-20 md:py-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-light text-center mb-4 text-rose-500">
-          Nuestros oradores
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-semibold text-center mb-4 text-rose-500">
+          Oradores
         </h2>
         <p className="text-center text-gray-400 mb-12 sm:mb-16 text-sm sm:text-base">
           Conoce a los creadores y pensadores que harán este evento especial
@@ -72,7 +72,7 @@ export default function Presenters() {
               </div>
 
               {/* Name */}
-              <h3 className="text-lg sm:text-xl font-semibold mb-1">
+              <h3 className="text-xl sm:text-2xl font-sans font-semibold uppercase text-center mb-1">
                 {presenter.name}
               </h3>
 
