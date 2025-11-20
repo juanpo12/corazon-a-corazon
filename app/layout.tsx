@@ -13,20 +13,7 @@ export const metadata: Metadata = {
   description:
     "Un evento donde creadores y pensadores se reúnen para conectar auténticamente. Descubre a nuestros presentadores y adquiere tu entrada.",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: "/de corazoDn a corazon 2026-03.png",
     apple: "/apple-icon.png",
   },
 }
