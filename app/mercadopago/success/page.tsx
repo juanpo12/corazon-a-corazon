@@ -1,6 +1,7 @@
-export default function SuccessPage({ searchParams }: { searchParams: Record<string, string> }) {
-  const paymentId = searchParams?.payment_id
-  const externalReference = searchParams?.external_reference
+export default async function SuccessPage({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
+  const sp = await searchParams
+  const paymentId = sp?.payment_id
+  const externalReference = sp?.external_reference
   return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center p-6">
       <div className="bg-zinc-900 rounded-xl max-w-md w-full border border-rose-500/20 p-6 sm:p-8 text-center">

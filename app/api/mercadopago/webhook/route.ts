@@ -3,10 +3,14 @@ import { MercadoPagoConfig, Payment } from "mercadopago"
 import { db } from "@/db"
 import { tickets, events } from "@/db/schema"
 import { eq, and } from "drizzle-orm"
+import { sendTicketConfirmationEmail } from "@/lib/email"
 
 export async function POST(req: Request) {
   try {
     const payload = await req.json().catch(() => null)
+    const url = new URL(req.url)
+    const qpType = url.searchParams.get("type") || url.searchParams.get("topic")
+    const qpId = url.searchParams.get("id") || url.searchParams.get("data.id")
     const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN
     if (!accessToken) {
       return NextResponse.json(
@@ -15,13 +19,13 @@ export async function POST(req: Request) {
       )
     }
 
-    const type = payload?.type || payload?.topic
+    const type = payload?.type || payload?.topic || qpType
     if (type !== "payment") {
       // Ignoramos otros tipos de notificación
       return NextResponse.json({ received: true, ignored: true })
     }
 
-    const paymentId = payload?.data?.id || payload?.id
+    const paymentId = payload?.data?.id || payload?.id || qpId
     if (!paymentId) {
       return NextResponse.json({ error: "Falta payment id" }, { status: 400 })
     }
@@ -87,6 +91,11 @@ export async function POST(req: Request) {
 
     const eventId = (Number.isFinite(Number(eventIdFromMeta)) ? Number(eventIdFromMeta) : undefined) ?? extEventId ?? activeEvent[0].id
 
+    // Datos resumidos para logging
+    console.log(
+      `[webhook] Pago aprobado ${paymentId} | email=${payerEmail} | qty=${quantity} | amount=${amountPaid}`
+    )
+
     // Evitar duplicados: si ya existe un ticket con este paymentId, no creamos otro
     const existing = await db
       .select()
@@ -95,7 +104,26 @@ export async function POST(req: Request) {
       .limit(1)
 
     if (existing?.length) {
-      return NextResponse.json({ received: true, duplicated: true })
+      // Ya existe ticket para este pago: intentar enviar el email de confirmación de todas formas
+      const existingTicket = existing[0]
+      const eventName = activeEvent?.[0]?.name || "Evento"
+      const emailTarget = payerEmail || existingTicket?.buyerEmail
+      if (emailTarget) {
+        try {
+          await sendTicketConfirmationEmail({
+            to: emailTarget,
+            buyerName: existingTicket?.buyerName || buyerName,
+            paymentId: String(paymentId),
+            eventName,
+            quantity: existingTicket?.quantity || quantity,
+            amountPaid: Number(existingTicket?.amountPaid ?? amountPaid),
+            currency: "ARS",
+          })
+        } catch (err) {
+          console.error("[webhook] Falló el envío de email de confirmación (duplicado):", err)
+        }
+      }
+      return NextResponse.json({ received: true, duplicated: true, emailed: Boolean(emailTarget) })
     }
 
     await db.insert(tickets).values({
@@ -108,6 +136,26 @@ export async function POST(req: Request) {
       paymentStatus: "paid",
       paymentId: String(paymentId),
     })
+    console.log(`[webhook] Ticket creado para payment ${paymentId}`)
+
+    // Enviar email de confirmación (no bloquear el flujo si falla)
+    if (payerEmail) {
+      const eventName = activeEvent?.[0]?.name || "Evento"
+      try {
+        console.log(`[webhook] Intentando enviar email a ${payerEmail} (payment ${paymentId})`)
+        await sendTicketConfirmationEmail({
+          to: payerEmail,
+          buyerName,
+          paymentId: String(paymentId),
+          eventName,
+          quantity,
+          amountPaid,
+          currency: "ARS",
+        })
+      } catch (err) {
+        console.error("[webhook] Falló el envío de email de confirmación:", err)
+      }
+    }
 
     return NextResponse.json({ received: true, created: true })
   } catch (err: any) {
